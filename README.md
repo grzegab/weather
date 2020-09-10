@@ -14,6 +14,7 @@ User will be able to provide his city and country via form and after submission 
 
 ## Stack:
 - PHP 7.X
+- Symfony 5
 - PostgreSQL
 - Redis
 - RabbitMQ
