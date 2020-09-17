@@ -15,7 +15,7 @@ System will be using several API providers to generate AVG value for city provid
 - Ability to easily add new data sources (with interfaces / abstract class)
 
 ## Stack:
-- PHP 7.X
+- PHP 7.4
 - Docker
 - Symfony 5
 - PostgreSQL
@@ -25,3 +25,4 @@ System will be using several API providers to generate AVG value for city provid
 - JS ES6+ (with typescript) + React (with typescript)
 - Bootstrap 5 (alpha)
 - HTML5 / CSS3
+- Varnish
