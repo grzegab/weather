@@ -90,7 +90,7 @@ Temporary Items
 /composer.phar
 
 # Backup entities generated with doctrine:generate:entities command
-**/Entity/*~
+src/DomainModel/*~
 
 # Embedded web-server pid file
 /.web-server-pid
