@@ -6,8 +6,9 @@ RUN apt-get update
 
 RUN apt-get install -y libzip-dev libicu-dev libpq-dev
 
+RUN pecl install redis
 RUN docker-php-ext-install -j$(nproc) pdo pdo_pgsql pgsql zip intl opcache
-RUN docker-php-ext-enable intl opcache
+RUN docker-php-ext-enable intl opcache redis
 
 #RUN pecl install xdebug-2.9.2
 #RUN docker-php-ext-enable xdebug
