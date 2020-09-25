@@ -1,3 +1,7 @@
 index:
     path: /
     controller: App\UI\Rest\Landing::index
+
+results:
+    path: /results
+    controller: App\UI\Rest\Measurements::getMeasurementForLocation
