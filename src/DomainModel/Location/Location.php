@@ -23,14 +23,9 @@ class Location
     private int $id;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=false)
+     * @ORM\Column(type="string", length=255, unique=false, nullable=true)
      */
     private string $city;
-
-    /**
-     * @ORM\Column(type="string", length=255, unique=false)
-     */
-    private string $country;
 
     /**
      * @ORM\Column(type="float", unique=false)
@@ -55,16 +50,6 @@ class Location
     public function setCity(string $city): void
     {
         $this->city = $city;
-    }
-
-    public function getCountry(): string
-    {
-        return $this->country;
-    }
-
-    public function setCountry(string $country): void
-    {
-        $this->country = $country;
     }
 
     public function getLon(): float

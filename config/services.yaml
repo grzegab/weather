@@ -42,7 +42,32 @@ services:
     App\Application\Measurements\MeasurementsAppService:
         arguments:
             $measureService: '@App\DomainModel\Measure\MeasureService'
+            $weatherService: '@App\DomainModel\Weather\WeatherService'
+            $locationService: '@App\DomainModel\Location\LocationService'
+            $redisService: '@App\DomainModel\Redis\RedisService'
 
     App\DomainModel\Measure\MeasureService:
         arguments:
-            $client: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+
+    App\DomainModel\Location\LocationService:
+        arguments:
+            $repository: '@App\Infrastructure\Location\LocationRepository'
+
+    App\Infrastructure\Location\LocationRepository:
+        arguments:
+            $em: '@Doctrine\ORM\EntityManagerInterface'
+
+    App\Infrastructure\Measure\MeasureRepository:
+        arguments:
+            $em: '@Doctrine\ORM\EntityManagerInterface'
+
+    App\DomainModel\Redis\RedisService:
+        arguments:
+            $redisClient: '@snc_redis.default'
+
+    App\DomainModel\Weather\WeatherService:
+        arguments:
+            $httpClient: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+            $openWeatherAPI: '%env(OPENWEATHER_API)%'
+            $climaCellAPI: '%env(CLIMACELL_API)%'
+            $stormGlassAPI: '%env(STORMGLASS_API)%'
