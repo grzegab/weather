@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section id="search-form" class="d-flex align-items-center">
+        <div class="container d-flex flex-column align-items-center">
+
+            <h1>Weather APP</h1>
+            <h2>Here you can check weather for specific location</h2>
+            <div class="justify-content-center">
+                <div>
+                    <h3>122</h3>
+                    <h4>Different locations</h4>
+                </div>
+                <div>
+                    <h3>350</h3>
+                    <h4>Unique measurements</h4>
+                </div>
+            </div>
+
+            <div class="search">
+                <h4>Search for weather!!!</h4>
+                {# action="{{ path() }}" #}
+                <form method="post" role="form" class="php-email-form">
+                    <div class="subscribe-form">
+                        <label for="lat">Latitude</label>
+                        <input type="text" name="Latitude" id="lat">
+                        <label for="lon">Longitude</label>
+                        <input type="text" name="Longitude" id="lon">
+                        <input type="submit" value="Get weather">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

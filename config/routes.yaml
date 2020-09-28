@@ -1,3 +1,11 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\UI\Rest\Landing::index
+
+result-coords:
+    path: /coords
+    controller: App\UI\Rest\Measurements::getMeasurementForCoords
+
+result-location:
+    path: /location
+    controller: App\UI\Rest\Measurements::getMeasurementForLocation

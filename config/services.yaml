@@ -10,22 +10,64 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\:
-        resource: '../src/'
-        exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
-            - '../src/Kernel.php'
-            - '../src/Tests/'
+    #App\:
+    #    resource: '../src/'
+    #    exclude:
+    #        - '../src/DependencyInjection/'
+    #        - '../src/Entity/'
+    #        - '../src/Kernel.php'
+    #        - '../src/Tests/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller/'
+    App\UI\Rest\:
+        resource: '../src/UI/Rest/'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\UI\Rest\Landing:
+        public: true
+
+    App\UI\Rest\Measurements:
+        arguments:
+            $measurementsAppService: '@App\Application\Measurements\MeasurementsAppService'
+        public: true
+
+    App\Application\Measurements\MeasurementsAppService:
+        arguments:
+            $measureService: '@App\DomainModel\Measure\MeasureService'
+            $weatherService: '@App\DomainModel\Weather\WeatherService'
+            $locationService: '@App\DomainModel\Location\LocationService'
+            $redisService: '@App\DomainModel\Redis\RedisService'
+
+    App\DomainModel\Measure\MeasureService:
+        arguments:
+
+    App\DomainModel\Location\LocationService:
+        arguments:
+            $repository: '@App\Infrastructure\Location\LocationRepository'
+
+    App\Infrastructure\Location\LocationRepository:
+        arguments:
+            $em: '@Doctrine\ORM\EntityManagerInterface'
+
+    App\Infrastructure\Measure\MeasureRepository:
+        arguments:
+            $em: '@Doctrine\ORM\EntityManagerInterface'
+
+    App\DomainModel\Redis\RedisService:
+        arguments:
+            $redisClient: '@snc_redis.default'
+
+    App\DomainModel\Weather\WeatherService:
+        arguments:
+            $httpClient: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+            $openWeatherAPI: '%env(OPENWEATHER_API)%'
+            $climaCellAPI: '%env(CLIMACELL_API)%'
+            $stormGlassAPI: '%env(STORMGLASS_API)%'

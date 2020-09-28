@@ -90,7 +90,7 @@ Temporary Items
 /composer.phar
 
 # Backup entities generated with doctrine:generate:entities command
-**/Entity/*~
+src/DomainModel/*~
 
 # Embedded web-server pid file
 /.web-server-pid
@@ -168,3 +168,14 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
+#DB
+docker/db/data/
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+
+.env.local
+/docker/redis/dump.rdb
