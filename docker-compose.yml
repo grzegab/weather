@@ -38,3 +38,9 @@ services:
     command: yarn ${APP_ENV}
     volumes:
       - .:/home/node/app
+
+  redis:
+    container_name: weather_redis
+    image: redis:latest
+    volumes:
+      - ./docker/redis:/data:cached
